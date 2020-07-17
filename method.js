@@ -48,7 +48,7 @@ function ArrMaxNum(arr) {
     })
     return max;
 }
-//数组出现的次数
+//数组中元素出现的次数
 function numShowTime(arr, num) {
     let newArr = [num];
     for (let item of arr) {
@@ -63,4 +63,30 @@ function numShowTime(arr, num) {
         time = 0
     }
     return time;
+}
+// 判断一个数为整数
+function integer(num) {
+    let numToString = "" + num;
+    return numToString.indexOf(".") !== -1 ? false : true;
+}
+
+// 自己实现删除元素
+function deleteProperty(arr, index) {
+    let indexToString = "" + index;
+    let flag = indexToString.indexOf(".") !== -1 ? false : true;
+    if (!flag) {
+        return "输入的索引错误"
+    } else if (flag) {
+        let newArr;
+        if (index > 0 || index < -1) {
+            let newArr1 = arr.slice(0, index);
+            let newArr2 = arr.slice(index + 1);
+            newArr = newArr1.concat(newArr2);
+        } else if (index === 0) {
+            newArr = arr.slice(1);
+        } else if (index === -1) {
+             newArr = arr.slice(0, -1);
+        }
+        return newArr;
+    }
 }
