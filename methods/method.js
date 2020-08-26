@@ -70,7 +70,7 @@ function integer(num) {
     return numToString.indexOf(".") !== -1 ? false : true;
 }
 
-// 自己实现删除元素
+// 自己实现splice方法
 function deleteProperty(arr, index) {
     let indexToString = "" + index;
     let flag = indexToString.indexOf(".") !== -1 ? false : true;

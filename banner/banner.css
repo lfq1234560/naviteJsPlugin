@@ -1,0 +1,98 @@
+* {
+		margin: 0;
+		padding: 0;
+	}
+
+	ul,
+	li {
+		list-style: none;
+	}
+
+	li:nth-child(1) {
+		background-color: yellow;
+	}
+
+	li:nth-child(2) {
+		background-color: olivedrab;
+	}
+
+	li:nth-child(3) {
+		background-color: burlywood;
+	}
+
+	li:nth-child(4) {
+		background-color: firebrick;
+	}
+
+	.banner {
+		width: 900px;
+		height: 300px;
+		background-color: aqua;
+		margin: 0 auto;
+		overflow: hidden;
+		position: relative;
+		cursor: pointer;
+	}
+
+	.banner ul {
+		width: 9999999px;
+		height: 100%;
+		position: absolute;
+	}
+
+	.banner ul li {
+		width: 900px;
+		height: 100%;
+		text-align: center;
+		line-height: 300px;
+		float: left;
+		font-size: 40px;
+		font-weight: 900;
+		
+	}
+	.banner .click{
+		width: 100%;
+		height: 50px;
+		position: absolute;
+		bottom: 0;
+		text-align: center;
+	}
+	.banner .click span{
+		display: inline-block;
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;
+		background-color: orange;
+		line-height:40px;
+		font-size: 24px;
+		font-weight: 900;
+		margin: 0 10px;
+	}
+	.banner .click .active{
+		background-color: blue;
+	}
+	.banner .control{
+		width: 100%;
+		height: 50px;
+		position: absolute;
+		top: 50%;
+		margin-top: -25px;
+	}
+	.banner .control span{
+		display: inline-block;
+		width: 50px;
+		height: 100%;
+		
+		text-align: center;
+		line-height:50px ;
+		font-weight: 900;
+		font-size: 32px;
+	}
+	.banner .control .left{
+		float: left;
+		
+	}
+	.banner .control .right{
+		float: right;
+	}
+	
