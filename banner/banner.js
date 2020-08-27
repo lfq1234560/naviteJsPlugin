@@ -1,8 +1,10 @@
 class Banner {
-	constructor(arr) {
+	constructor(arr, ele) {
+		//元素
+		this.ele = ele;
 		//轮播数据
 		this.arr = arr;
-		// 最外面的盒子
+		// 最外面的盒子banner
 		this.node = null;
 		// 播放第几张图片的初始值
 		this.count = 0;
@@ -10,9 +12,7 @@ class Banner {
 		this.node2 = null;
 		//图片的宽度
 		this.width = null;
-		//当前索引值
-		this.index = 0;
-		//小圆圈
+		//小圆圈的盒子
 		this.node3 = null;
 	}
 	//初始化方法
@@ -30,10 +30,10 @@ class Banner {
 		let liNode = this.arr.map((ele, index) => `<li>${ele}</li>`).join("");
 		let spanNode = this.arr.map((ele, index) => `<span class=${index===0 ?'active':''}>${ele}</span>`).join("");
 		this.node = document.createElement("div");
-		this.node.className="banner";
-		this.node.innerHTML=`<ul>${liNode}</ul><div class="click">${spanNode}</div><div class="control"><span class="left"><</span><span class="right">></span></div>`;
-		document.body.appendChild(this.node);
-		
+		this.node.className = "banner";
+		this.node.innerHTML = `<ul>${liNode}</ul><div class="click">${spanNode}</div><div class="control"><span class="left"><</span><span class="right">></span></div>`;
+		this.ele.appendChild(this.node);
+
 	}
 	//图片轮播
 	imgBanner() {

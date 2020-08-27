@@ -11,12 +11,12 @@
 </head>
 
 <body>
+	<div></div>
 	<script type="text/javascript">
 		// 轮播图实例
-		let banner = new Banner([1,2,3,4,5]);
+		let oDiv=document.querySelector("div")
+		let banner = new Banner([1, 2, 3, 4, 5],oDiv);
 		banner.init();
-		let banner1 = new Banner([1,2,3,4,5]);
-		banner1.init();
 	</script>
 
 </body>
