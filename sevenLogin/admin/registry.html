@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../node_modules//jquery/dist/jquery.js"></script>
+    <script src="./md5.js"></script>
+    <link rel="stylesheet" href="./../node_modules/bootstrap/dist/css/bootstrap.css">
+    <style>
+        .user,
+        .pas,
+        .click {
+            width: 20%;
+        }
+
+        .text {
+            font-size: 12px;
+            vertical-align: middle;
+        }
+
+        .input {
+            position: relative;
+            top: -5px;
+            width: 16px;
+            height: 16px;
+            vertical-align: middle;
+        }
+
+        .click {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <form class="user" role="search">
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="用户名">
+        </div>
+    </form>
+    <form class="pas" role="search">
+        <div class="form-group">
+            <input type="password" class="form-control" placeholder="密码">
+        </div>
+    </form>
+    <div class="click">
+        <button type="button" class="btn btn-default navbar-btn">注册</button>
+    </div>
+    <script>
+        //验证信息
+        let oInputs = document.querySelectorAll(".form-control");
+        let user = oInputs[0],
+            password = oInputs[1];
+        let oBtn = document.querySelector(".btn");
+        let userRegexp = /^\w{2,6}$/,
+            pasRegexp = /^\d{6,10}$/;
+        oBtn.addEventListener("click", () => {
+            if (user.value.trim().length === 0) {
+                alert("用户名不能为空");
+                return;
+            }
+            if (password.value.trim().length === 0) {
+                alert("密码不能为空");
+                return;
+            }
+            if (!userRegexp.test(user.value.trim())) {
+                alert("用户名是数字、字母、下划线组合，至少两位最多六位");
+                return;
+            }
+            if (!pasRegexp.test(password.value.trim())) {
+                alert("密码是数字组合，至少六位最多十位");
+                return;
+            }
+            //信息验证成立发送请求
+            if (userRegexp.test(user.value.trim()) && pasRegexp.test(password.value.trim())) {
+                let passwordMd5 = $.md5(password.value.trim());
+                let xhr = new XMLHttpRequest();
+                xhr.open("post", "http://localhost:4000/home/registry");
+                xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+                xhr.send(`user=${user.value.trim()}&password=${passwordMd5}`);
+                xhr.onload = function () {
+                    if (xhr.status === 200) {
+                        let res = JSON.parse(xhr.responseText);
+                        if (res.msg === "success") window.open("./login.html","_blank");
+                        else if (res.msg === "fail") alert(res.data);
+                    }
+                }
+            }
+        })
+       
+    </script>
+</body>
+
+</html>
