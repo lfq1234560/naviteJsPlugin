@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        img {
+            display: block;
+            width: 500px;
+            height: 500px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="imglist">
+        <img class="lazy"
+            src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1471151440,2830170852&fm=26&gp=0.jpg"
+            data-src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1602599144200&di=bfe34b3e224694847f760fee0f2de1bd&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2F2f6ae348b19c83fdc721ca5a54d4adb8d7455fa31dc76-GMqiCq_fw658"
+            alt="">
+        <img class="lazy"
+            src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1471151440,2830170852&fm=26&gp=0.jpg"
+            data-src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1602599144200&di=62c3562e96c8523be933f9d031f9e1b2&imgtype=0&src=http%3A%2F%2Fimg1c.xgo-img.com.cn%2Fpics%2F1699%2F1698893.jpg"
+            alt="">
+        <img class="lazy"
+            src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1471151440,2830170852&fm=26&gp=0.jpg"
+            data-src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3441245796,6185313&fm=26&gp=0.jpg"
+            alt="">
+        <img class="lazy"
+            src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1471151440,2830170852&fm=26&gp=0.jpg"
+            data-src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1602599144199&di=b3dcdb39035352cd5f43e13a18efd792&imgtype=0&src=http%3A%2F%2Fpic1.win4000.com%2Fpic%2Fb%2F7b%2F1a0a1305442.jpg"
+            alt="">
+        <img class="lazy"
+            src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1471151440,2830170852&fm=26&gp=0.jpg"
+            data-src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1602599144199&di=82cd14d58af016c8916efe18e3b7af58&imgtype=0&src=http%3A%2F%2Fpic1.win4000.com%2Fpic%2F8%2F4e%2F007c362887.jpg"
+            alt="">
+        <img class="lazy"
+            src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1471151440,2830170852&fm=26&gp=0.jpg"
+            data-src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1602599144199&di=2b2e2009ccbcd079fda4d58a2dc259b8&imgtype=0&src=http%3A%2F%2Fpic1.win4000.com%2Fpic%2F4%2Fd4%2F12621298581.jpg"
+            alt="">
+        <img class="lazy"
+            src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1471151440,2830170852&fm=26&gp=0.jpg"
+            data-src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1602599144198&di=f824e11414db46fd14de80d643b05a65&imgtype=0&src=http%3A%2F%2Fpic1.win4000.com%2Fpic%2Fe%2F0f%2F1b7e513753.jpg"
+            alt="">
+        <img class="lazy"
+            src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1471151440,2830170852&fm=26&gp=0.jpg"
+            data-src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1602599144198&di=3fe2e564676baf3f3ee8037eeb6b079e&imgtype=0&src=http%3A%2F%2Fpic1.win4000.com%2Fpic%2F1%2F50%2F3b06419346.jpg"
+            alt="">
+    </div>
+    <script>
+        // 获取懒加载图片标签
+        var imgs = document.querySelectorAll('img');
+        // 可视区域高度
+        var h = window.innerHeight;
+        //当页面初始化还没有滚动时
+        lazyload(imgs);
+        window.onscroll = function (){
+            lazyload(imgs);
+        }
+        // 懒加载实现
+        function lazyload(imgs) {
+            //滚动区域高度
+            var s = document.documentElement.scrollTop || document.body.scrollTop;
+            for (let i = 0; i < imgs.length; i++) {
+                if ((h + s) > imgs[i].offsetTop) { //图片距离顶部的距离小于可视区域和滚动区域之和时懒加载
+                    setTimeout(function () { // 真实情况是页面开始有2秒空白，所以使用setTimeout定时2s
+                        var temp = new Image(); //创建一个临时图片，这个图片在内存中不会到页面上去。实现隐形加载
+                        temp.src = imgs[i].getAttribute('data-src'); //只会请求一次
+                        temp.onload = function () { // onload判断图片加载完毕，真是图片加载完毕，再赋值给dom节点
+                            imgs[i].src = imgs[i].getAttribute('data-src') // 获取自定义属性data-src，用真图片替换假图片
+                        }
+                    }, 2000)
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
