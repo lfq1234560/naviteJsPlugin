@@ -1,0 +1,17 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  overflow: hidden;
+}
+
+.box {
+  width: 100px;
+  height: 100px;
+  background-color: burlywood;
+  position: fixed;
+  left: 0;
+  top: 0;
+}

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./example.css">
+</head>
+
+<body>
+  <div class="box"></div>
+  <script>
+    let oDiv = document.querySelector(".box");
+    //先给元素一个鼠标按下事件，接着给document一个鼠标移动事件，最后给鼠标一个抬起事件
+    oDiv.onmousedown = function (e) {
+      let divLeft = this.offsetLeft;
+      let divTop = this.offsetTop;
+      let divX = e.clientX;
+      let divY = e.clientY;
+      this.style.cursor="move";
+      document.onmousemove = function (e) {
+        oDiv.style.left = e.clientX - (divX - divLeft) + "px";
+        oDiv.style.top = e.clientY - (divY - divTop) + "px";
+        oDiv.onmouseup=function(){
+          document.onmousemove=null;
+          this.style.cursor="default";
+        }
+      }
+    }
+  </script>
+</body>
+
+</html>
